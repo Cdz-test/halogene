@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HALOGÈNE 2026 — Festival de musique électronique</title>
+<meta name="description" content="HALOGÈNE : trois nuits, quatre scènes, une ancienne centrale thermique transformée en cathédrale de lumière. Du 17 au 19 juillet 2026.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;800;900&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { ink: '#07060b', night: '#0e0c16', acid: '#c8ff2e', plasma: '#ff3d81', ultra: '#5b3bff', bone: '#f1ede4' },
+      fontFamily: {
+        display: ['Unbounded', 'sans-serif'],
+        serif: ['Instrument Serif', 'serif'],
+        mono: ['Space Mono', 'monospace'],
+        body: ['Inter', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background:#07060b; color:#f1ede4; font-family:'Inter',sans-serif; overflow-x:hidden; }
+  ::selection { background:#c8ff2e; color:#07060b; }
+  .grain::after { content:""; position:absolute; inset:0; pointer-events:none; opacity:.14; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:2px solid #c8ff2e; outline-offset:4px; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-50 mix-blend-difference">
+<style>
+  .nav-link { position:relative; }
+  .nav-link::after { content:""; position:absolute; left:0; bottom:-4px; height:1px; width:100%; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform .6s cubic-bezier(0.16,1,0.3,1); }
+  .nav-link:hover::after { transform:scaleX(1); transform-origin:left; }
+  @media (prefers-reduced-motion: no-preference) { .nav-in { animation: navIn 1.2s cubic-bezier(0.16,1,0.3,1) .2s both; } }
+  @keyframes navIn { from { opacity:0; transform:translateY(-100%);} to { opacity:1; transform:none; } }
+  #menu { transition: clip-path .8s cubic-bezier(0.16,1,0.3,1); clip-path: circle(0% at 100% 0); }
+  #menu.open { clip-path: circle(150% at 100% 0); }
+</style>
+<div class="nav-in flex items-center justify-between px-5 md:px-10 py-5 text-white">
+  <a href="#top" class="font-display font-black text-lg tracking-tighter">HALOGÈNE<span class="font-mono font-normal text-[10px] align-top ml-1">®26</span></a>
+  <nav class="hidden md:flex items-center gap-9 font-mono text-xs uppercase tracking-widest">
+    <a class="nav-link" href="#concept">Le lieu</a>
+    <a class="nav-link" href="#lineup">Line-up</a>
+    <a class="nav-link" href="#scenes">Scènes</a>
+    <a class="nav-link" href="#programme">Programme</a>
+    <a class="nav-link" href="#pass">Billets</a>
+    <a class="nav-link" href="#infos">Infos</a>
+  </nav>
+  <div class="flex items-center gap-3">
+    <a href="#pass" class="hidden sm:inline-block font-mono text-xs uppercase tracking-widest border border-white rounded-full px-5 py-2 hover:bg-white hover:text-black transition-colors duration-500">Réserver</a>
+    <button id="burger" aria-label="Ouvrir le menu" class="md:hidden w-10 h-10 rounded-full border border-white flex items-center justify-center"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</div>
+</header>
+<div id="menu" class="fixed inset-0 z-40 bg-acid text-ink flex flex-col justify-center px-8 md:hidden">
+  <nav class="flex flex-col gap-4 font-display font-black text-5xl tracking-tighter">
+    <a href="#concept" class="menu-l">Le lieu</a>
+    <a href="#lineup" class="menu-l">Line-up</a>
+    <a href="#scenes" class="menu-l">Scènes</a>
+    <a href="#programme" class="menu-l">Programme</a>
+    <a href="#pass" class="menu-l">Billets</a>
+    <a href="#infos" class="menu-l">Infos</a>
+  </nav>
+  <script>
+    (function(){
+      var b=document.getElementById('burger'), m=document.getElementById('menu');
+      b.addEventListener('click',function(){ m.classList.toggle('open'); });
+      m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ m.classList.remove('open'); }); });
+    })();
+  </script>
+</div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="relative min-h-[100svh] overflow-hidden bg-ink grain flex flex-col justify-end">
+<style>
+  @media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) { .reveal { animation: reveal both cubic-bezier(0.16, 1, 0.3, 1); animation-timeline: view(); animation-range: entry 0% entry 90%; } } } @keyframes reveal { from { opacity: 0; transform: translateY(3rem) scale(0.98); } to { opacity: 1; transform: none; } }
+
+  .beam { position:absolute; top:-10%; width:34vw; height:130%; transform-origin:50% 0; filter:blur(30px); mix-blend-mode:screen; opacity:.75; }
+  .beam.b1 { left:8%; background:linear-gradient(180deg, rgba(200,255,46,.85), rgba(200,255,46,0) 75%); clip-path:polygon(45% 0,55% 0,100% 100%,0 100%); }
+  .beam.b2 { left:34%; background:linear-gradient(180deg, rgba(255,61,129,.9), rgba(255,61,129,0) 75%); clip-path:polygon(46% 0,54% 0,100% 100%,0 100%); }
+  .beam.b3 { left:58%; background:linear-gradient(180deg, rgba(91,59,255,.95), rgba(91,59,255,0) 75%); clip-path:polygon(46% 0,54% 0,100% 100%,0 100%); }
+  .beam.b4 { left:78%; background:linear-gradient(180deg, rgba(200,255,46,.6), rgba(200,255,46,0) 70%); clip-path:polygon(46% 0,54% 0,100% 100%,0 100%); }
+  @media (prefers-reduced-motion: no-preference) {
+    .beam.b1 { animation: sweepA 9s ease-in-out infinite alternate; }
+    .beam.b2 { animation: sweepB 11s ease-in-out infinite alternate; }
+    .beam.b3 { animation: sweepA 13s ease-in-out infinite alternate-reverse; }
+    .beam.b4 { animation: sweepB 8s ease-in-out infinite alternate-reverse; }
+    .h-word > span { display:inline-block; animation: wordUp 1.6s cubic-bezier(0.16,1,0.3,1) both; }
+    .h-word > span:nth-child(1){animation-delay:.25s} .h-word > span:nth-child(2){animation-delay:.32s} .h-word > span:nth-child(3){animation-delay:.39s}
+    .h-word > span:nth-child(4){animation-delay:.46s} .h-word > span:nth-child(5){animation-delay:.53s} .h-word > span:nth-child(6){animation-delay:.60s}
+    .h-word > span:nth-child(7){animation-delay:.67s} .h-word > span:nth-child(8){animation-delay:.74s}
+    .h-fade { animation: fadeUp 1.4s cubic-bezier(0.16,1,0.3,1) 1.1s both; }
+    .h-fade2 { animation: fadeUp 1.4s cubic-bezier(0.16,1,0.3,1) 1.4s both; }
+    .h-img { animation: imgReveal 1.8s cubic-bezier(0.16,1,0.3,1) .6s both; }
+    .spin-badge { animation: spin 22s linear infinite; }
+  }
+  @keyframes sweepA { from { transform: rotate(-22deg);} to { transform: rotate(18deg);} }
+  @keyframes sweepB { from { transform: rotate(20deg);} to { transform: rotate(-24deg);} }
+  @keyframes wordUp { from { opacity:0; transform: translateY(110%) rotate(6deg); filter:blur(12px);} to { opacity:1; transform:none; filter:none; } }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(2rem);} to { opacity:1; transform:none; } }
+  @keyframes imgReveal { from { clip-path: inset(100% 0 0 0); opacity:.2;} to { clip-path: inset(0 0 0 0); opacity:1; } }
+  @keyframes spin { to { transform: rotate(360deg);} }
+  .h-clip { overflow:hidden; padding-bottom:.08em; }
+  .outline-t { -webkit-text-stroke: 1.5px #f1ede4; color:transparent; }
+</style>
+
+<div class="absolute inset-0">
+  <div class="beam b1"></div><div class="beam b2"></div><div class="beam b3"></div><div class="beam b4"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
+</div>
+
+<div class="h-img absolute right-[-8%] md:right-[4%] top-[14%] w-[62vw] md:w-[26vw] aspect-[3/4] rounded-t-full overflow-hidden border border-white/20">
+  <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=900&q=80" alt="DJ en cabine face à une foule sous les lumières" class="w-full h-full object-cover mix-blend-luminosity opacity-80">
+  <div class="absolute inset-0 bg-gradient-to-t from-plasma/50 to-ultra/30 mix-blend-color"></div>
+</div>
+
+<div class="spin-badge absolute z-10 right-6 md:right-[24%] bottom-[34%] md:bottom-[38%] w-28 h-28 md:w-36 md:h-36 rounded-full bg-acid text-ink flex items-center justify-center">
+  <div class="text-center font-mono text-[10px] md:text-xs uppercase leading-tight font-bold">17—19<br>Juillet<br>2026</div>
+</div>
+
+<div class="relative z-10 px-5 md:px-10 pb-8 md:pb-10 pt-32">
+  <p class="h-fade font-mono text-xs md:text-sm uppercase tracking-[0.3em] text-acid mb-4 md:mb-6"><span class="inline-block w-2 h-2 rounded-full bg-acid mr-2 align-middle"></span>Festival de musique électronique · Centrale de Gravelines, Nord</p>
+  <h1 class="font-display font-black uppercase leading-[0.82] tracking-[-0.06em] text-[clamp(3.2rem,17.5vw,19rem)]">
+    <span class="h-clip block h-word"><span>H</span><span>A</span><span>L</span><span>O</span></span>
+    <span class="h-clip block h-word"><span class="outline-t">G</span><span class="outline-t">È</span><span class="outline-t">N</span><span class="outline-t">E</span></span>
+  </h1>
+  <div class="h-fade2 mt-8 md:mt-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+    <p class="font-serif italic text-2xl md:text-4xl max-w-xl leading-tight text-bone/90">Trois nuits dans une ancienne centrale thermique, où chaque kick fait trembler quarante mètres de béton.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#pass" class="group inline-flex items-center gap-3 bg-acid text-ink font-display font-bold text-sm uppercase tracking-tight rounded-full pl-7 pr-3 py-3 hover:bg-plasma hover:text-white transition-colors duration-500">Prendre mon pass <span class="w-9 h-9 rounded-full bg-ink text-acid flex items-center justify-center group-hover:rotate-45 transition-transform duration-500"><i class="fa-solid fa-arrow-right"></i></span></a>
+      <a href="#lineup" class="inline-flex items-center gap-2 border border-white/40 rounded-full px-7 py-3 font-mono text-xs uppercase tracking-widest hover:border-acid hover:text-acid transition-colors duration-500">Voir le line-up</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="bg-acid text-ink overflow-hidden border-y border-ink py-4" aria-label="Annonces">
+<style>
+  @media (prefers-reduced-motion: no-preference) { .mq { animation: mq 38s linear infinite; } .mq-rev { animation: mq 44s linear infinite reverse; } .mq-wrap:hover .mq { animation-play-state: paused; } }
+  @keyframes mq { to { transform: translateX(-50%); } }
+</style>
+<div class="mq-wrap">
+  <div class="mq flex w-max whitespace-nowrap font-display font-black uppercase text-3xl md:text-5xl tracking-tighter">
+    <span class="px-6">Quatre scènes ✺ 72 artistes ✺ 36 000 festivaliers ✺ 0 sommeil ✺</span>
+    <span class="px-6">Quatre scènes ✺ 72 artistes ✺ 36 000 festivaliers ✺ 0 sommeil ✺</span>
+    <span class="px-6">Quatre scènes ✺ 72 artistes ✺ 36 000 festivaliers ✺ 0 sommeil ✺</span>
+    <span class="px-6">Quatre scènes ✺ 72 artistes ✺ 36 000 festivaliers ✺ 0 sommeil ✺</span>
+  </div>
+</div>
+</section>
+
+<!-- ============ CONCEPT ============ -->
+<section id="concept" class="relative bg-bone text-ink py-24 md:py-40 px-5 md:px-10 overflow-hidden">
+<style>
+  .fill-text { background: linear-gradient(90deg, #07060b 0 50%, rgba(7,6,11,.18) 50% 100%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip:text; background-clip:text; color:transparent; }
+  @supports (animation-timeline: view()) { @media (prefers-reduced-motion: no-preference) {
+    .fill-text { animation: fillx linear both; animation-timeline: view(); animation-range: entry 30% cover 55%; }
+    .par-a { animation: parA linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+    .par-b { animation: parB linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
+  } }
+  @keyframes fillx { from { background-position: 100% 0; } to { background-position: 0% 0; } }
+  @keyframes parA { from { transform: translateY(6rem);} to { transform: translateY(-6rem);} }
+  @keyframes parB { from { transform: translateY(-3rem) rotate(-3deg);} to { transform: translateY(5rem) rotate(2deg);} }
+</style>
+<div class="max-w-[1500px] mx-auto">
+  <p class="reveal font-mono text-xs uppercase tracking-[0.3em] mb-10 flex items-center gap-3"><span class="w-10 h-px bg-ink"></span>01 — Le lieu</p>
+  <h2 class="fill-text font-display font-black uppercase tracking-[-0.05em] leading-[0.92] text-[clamp(2rem,6.4vw,7rem)] max-w-[18ch]">Un monstre de béton éteint en 2009, rallumé pour trois nuits.</h2>
+
+  <div class="mt-16 md:mt-28 grid md:grid-cols-12 gap-8 md:gap-6 items-start">
+    <div class="md:col-span-5 md:col-start-1">
+      <div class="par-a reveal relative aspect-[4/5] overflow-hidden rounded-[2rem] md:rounded-tl-[12rem]">
+        <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=1000&q=80" alt="Foule les bras levés lors d'un concert nocturne" class="w-full h-full object-cover hover:scale-105 transition-transform duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+      </div>
+    </div>
+    <div class="md:col-span-4 md:col-start-7 md:pt-40">
+      <p class="reveal font-serif text-2xl md:text-3xl leading-snug">HALOGÈNE n'est pas un champ avec des enceintes. C'est une cathédrale industrielle : turbines de 30 mètres, halls de refroidissement, canal éclairé au laser. L'acoustique d'un lieu qui n'a jamais été pensé pour la musique — et c'est exactement pour ça qu'elle est unique.</p>
+      <div class="reveal mt-10 grid grid-cols-2 gap-6 font-mono text-xs uppercase tracking-widest">
+        <div class="border-t border-ink pt-3"><span class="block font-display font-black text-5xl tracking-tighter normal-case">42 m</span>sous plafond, hall des turbines</div>
+        <div class="border-t border-ink pt-3"><span class="block font-display font-black text-5xl tracking-tighter normal-case">96 h</span>de son sans rideau de pluie : tout est couvert</div>
+      </div>
+    </div>
+    <div class="md:col-span-3 md:col-start-10 hidden md:block md:-mt-24">
+      <div class="par-b w-full aspect-square rounded-full bg-gradient-to-br from-plasma via-ultra to-acid grain relative overflow-hidden flex items-center justify-center">
+        <span class="font-display font-black text-ink text-3xl text-center leading-none uppercase tracking-tighter">Pas de<br>scène<br>extérieure</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ LINE-UP ============ -->
+<section id="lineup" class="relative bg-ink py-24 md:py-36 overflow-hidden">
+<style>
+  .lu-row { position:relative; display:flex; align-items:baseline; gap:1.5rem; padding:1.2rem 0; border-top:1px solid rgba(241,237,228,.15); cursor:default; transition: padding .7s cubic-bezier(0.16,1,0.3,1), color .5s; }
+  .lu-row:last-child { border-bottom:1px solid rgba(241,237,228,.15); }
+  .lu-row .nm { transition: transform .7s cubic-bezier(0.16,1,0.3,1), color .5s; display:inline-block; }
+  .lu-row .pv { position:absolute; right:0; top:50%; width:min(34vw,320px); aspect-ratio:4/5; transform: translateY(-50%) scale(.85) rotate(-4deg); opacity:0; pointer-events:none; transition: transform .8s cubic-bezier(0.16,1,0.3,1), opacity .5s; border-radius:1.5rem; overflow:hidden; z-index:5; }
+  .lu-row .pv img { width:100%; height:100%; object-fit:cover; }
+  @media (hover:hover) {
+    .lu-row:hover .nm { transform: translateX(1.5rem); color:#c8ff2e; }
+    .lu-row:hover { padding-left:.5rem; }
+    .lu-row:hover .pv { opacity:1; transform: translateY(-50%) scale(1) rotate(3deg); }
+    .lu-list:hover .lu-row:not(:hover) { color: rgba(241,237,228,.35); }
+  }
+  .lu-row:focus-visible .pv { opacity:1; transform: translateY(-50%) scale(1) rotate(3deg); }
+  @media (max-width:767px){ .lu-row .pv { display:none; } }
+</style>
+<div class="px-5 md:px-10 max-w-[1500px] mx-auto">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 md:mb-20">
+    <div>
+      <p class="reveal font-mono text-xs uppercase tracking-[0.3em] text-acid mb-6">02 — Line-up</p>
+      <h2 class="reveal font-display font-black uppercase tracking-[-0.06em] leading-[0.85] text-[clamp(3rem,11vw,12rem)]">Les<br><span class="font-serif italic font-normal normal-case tracking-tight text-plasma">noms</span> gravés</h2>
+    </div>
+    <p class="reveal max-w-xs font-body font-light text-bone/70 leading-relaxed">Vingt têtes d'affiche sur 72 artistes. Survolez un nom, la nuit s'éclaire. Les horaires complets sont plus bas.</p>
+  </div>
+
+  <div class="lu-list" role="list">
+    <div class="lu-row reveal" role="listitem" tabindex="0">
+      <span class="font-mono text-xs text-acid w-10 shrink-0">VEN</span>
+      <span class="nm font-display font-black uppercase tracking-[-0.05em] text-[clamp(2rem,7.5vw,7.5rem)] leading-none">Nina Kraviz</span>
+      <span class="ml-auto hidden sm:block font-mono text-xs uppercase tracking-widest text-bone/60">Techno · Hall des turbines</span>
+      <div class="pv"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" alt="Silhouette de DJ dans la fumée et les lasers"></div>
+    </div>
+    <div class="lu-row reveal" role="listitem" tabindex="0">
+      <span class="font-mono text-xs text-acid w-10 shrink-0">VEN</span>
+      <span class="nm font-display font-black uppercase tracking-[-0.05em] text-[clamp(2rem,7.5vw,7.5rem)] leading-none">Floating Points</span>
+      <span class="ml-auto hidden sm:block font-mono text-xs uppercase tracking-widest text-bone/60">Live · Cathédrale</span>
+      <div class="pv"><img src="https://images.unsplash.com/photo-1571266028243-d220c6a9c4c6?auto=format&fit=crop&w=600&q=80" alt="Synthétiseurs et machines analogiques sur scène"></div>
+    </div>
+    <div class="lu-row reveal" role="listitem" tabindex="0">
+      <span class="font-mono text-xs text-acid w-10 shrink-0">SAM</span>
+      <span class="nm font-display font-black uppercase tracking-[-0.05em] text-[clamp(2rem,7.5vw,7.5rem)] leading-none">Charlotte de Witte</span>
+      <span class="ml-auto hidden sm:block font-mono text-xs uppercase tracking-widest text-bone/60">Techno · Hall des turbines</span>
+      <div class="pv"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80" alt="Foule dansant sous des faisceaux de lumière"></div>
+    </div>
+    <div class="lu-row reveal" role="listitem" tabindex="0">
+      <span class="font-mono text-xs text-acid w-10 shrink-0">SAM</span>
+      <span class="nm font-display font-black uppercase tracking-[-0.05em] text-[clamp(2rem,7.5vw,7.5rem)] leading-none">Bicep (live)</span>
+      <span class="ml-auto hidden sm:block font-mono text-xs uppercase tracking-widest text-bone/60">Électronica · Le Canal</span>
+      <div class="pv"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=600&q=80" alt="Scène de festival éclairée de rose et de violet"></div>
+    </div>
+    <div class="lu-row reveal" role="listitem" tabindex="0">
+      <span class="font-mono text-xs text-acid w-10 shrink-0">SAM</span>
+      <span class="nm font-display font-black uppercase tracking-[-0.05em] text-[clamp(2rem,7.5vw,7.5rem)] leading-none">Folamour</span>
+      <span class="ml-auto hidden sm:block font-mono text-xs uppercase tracking-widest text-bone/60">House · Le Canal</span>
+      <div class="pv"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80" alt="DJ jouant sur platines devant un public enthousiaste"></div>
+    </div>
+    <div class="lu-row reveal" role="listitem" tabindex="0">
+      <span class="font-mono text-xs text-acid w-10 shrink-0">DIM</span>
+      <span class="nm font-display font-black uppercase tracking-[-0.05em] text-[clamp(2rem,7.5vw,7.5rem)] leading-none">Jungle Brain</span>
+      <span class="ml-auto hidden sm:block font-mono text-xs uppercase tracking-widest text-bone/60">Breaks · La Chaufferie</span>
+      <div class="pv"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80" alt="Festival au crépuscule avec grande foule"></div>
+    </div>
+    <div class="lu-row reveal" role="listitem" tabindex="0">
+      <span class="font-mono text-xs text-acid w-10 shrink-0">DIM</span>
+      <span class="nm font-display font-black uppercase tracking-[-0.05em] text-[clamp(2rem,7.5vw,7.5rem)] leading-none">Éclipse Sonore b2b Maëlys</span>
+      <span class="ml-auto hidden sm:block font-mono text-xs uppercase tracking-widest text-bone/60">Closing · Hall des turbines</span>
+      <div class="pv"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=600&q=80" alt="Public aux bras levés face à une scène lumineuse"></div>
+    </div>
+  </div>
+  <p class="reveal mt-8 font-mono text-xs uppercase tracking-widest text-bone/50">+ 65 autres artistes · annonce finale le 12 mai 2026</p>
+</div>
+</section>
+
+<!-- ============ SCENES (horizontal pinned) ============ -->
+<section id="scenes" class="relative bg-night">
+<style>
+  .pin-wrap { height: 420vh; view-timeline-name: --pin; view-timeline-axis: block; }
+  .pin-stick { position: sticky; top:0; height:100vh; overflow:hidden; display:flex; flex-direction:column; justify-content:center; }
+  .track { display:flex; gap:2rem; padding:0 5vw; width:max-content; }
+  @supports (animation-timeline: view()) { @media (prefers-reduced-motion: no-preference) {
+    .track { animation: slideX linear both; animation-timeline: --pin; animation-range: contain 0% contain 100%; }
+    .bar { animation: barGrow linear both; animation-timeline: --pin; animation-range: contain 0% contain 100%; transform-origin:left; }
+  } }
+  @keyframes slideX { from { transform: translateX(0);} to { transform: translateX(calc(-100% + 100vw - 10vw)); } }
+  @keyframes barGrow { from { transform: scaleX(0.02);} to { transform: scaleX(1);} }
+  .sc-card { width: min(82vw, 560px); flex-shrink:0; position:relative; border-radius:2rem; overflow:hidden; aspect-ratio: 4/5; max-height:62vh; }
+  .sc-card img { width:100%; height:100%; object-fit:cover; transition: transform 1.4s cubic-bezier(0.16,1,0.3,1); }
+  .sc-card:hover img { transform: scale(1.08); }
+  /* fallback: no scroll-timeline support => native horizontal scroll, pin disabled */
+  @supports not (animation-timeline: view()) {
+    .pin-wrap { height:auto; } .pin-stick { position:relative; height:auto; padding:5rem 0; } .track { overflow-x:auto; width:auto; scroll-snap-type:x mandatory; } .sc-card { scroll-snap-align:center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pin-wrap { height:auto; } .pin-stick { position:relative; height:auto; padding:5rem 0; } .track { overflow-x:auto; width:auto; }
+  }
+</style>
+<div class="pin-wrap">
+  <div class="pin-stick">
+    <div class="px-5 md:px-10 mb-8 md:mb-10 flex items-end justify-between gap-6">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.3em] text-plasma mb-3">03 — Les scènes</p>
+        <h2 class="font-display font-black uppercase tracking-[-0.06em] leading-[0.85] text-[clamp(2.4rem,8vw,8rem)]">Quatre <span class="font-serif italic font-normal normal-case text-acid tracking-tight">mondes</span></h2>
+      </div>
+      <p class="hidden md:block font-mono text-xs uppercase tracking-widest text-bone/60 text-right">Faites défiler<br>→</p>
+    </div>
+    <div class="track">
+      <article class="sc-card bg-ink group">
+        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1000&q=80" alt="Grande scène éclairée par des lasers verts et une foule dense">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-7">
+          <span class="font-mono text-xs text-acid">A — 18 000 pers.</span>
+          <h3 class="font-display font-black uppercase text-4xl md:text-5xl tracking-tighter leading-none mt-2">Le Hall des Turbines</h3>
+          <p class="font-body font-light text-bone/80 mt-3 text-sm">Techno, hard groove, closing. Un mur de son de 140 enceintes sous 42 m de plafond.</p>
+        </div>
+      </article>
+      <article class="sc-card bg-ink">
+        <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=1000&q=80" alt="Mains levées devant une scène bleue et rose">
+        <div class="absolute inset-0 bg-gradient-to-t from-ultra/90 via-ink/30 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-7">
+          <span class="font-mono text-xs text-acid">B — 7 000 pers.</span>
+          <h3 class="font-display font-black uppercase text-4xl md:text-5xl tracking-tighter leading-none mt-2">La Cathédrale</h3>
+          <p class="font-body font-light text-bone/80 mt-3 text-sm">Lives, ambient, électronica. Vitraux de LED et son 360° pour les concerts debout et allongés.</p>
+        </div>
+      </article>
+      <article class="sc-card bg-ink">
+        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1000&q=80" alt="Festival de nuit avec lumières pourpres et public en liesse">
+        <div class="absolute inset-0 bg-gradient-to-t from-plasma/90 via-ink/30 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-7">
+          <span class="font-mono text-xs text-acid">C — 5 000 pers.</span>
+          <h3 class="font-display font-black uppercase text-4xl md:text-5xl tracking-tighter leading-none mt-2">Le Canal</h3>
+          <p class="font-body font-light text-bone/80 mt-3 text-sm">House, disco, afro. Une scène flottante, les pieds près de l'eau, du coucher du soleil à l'aube.</p>
+        </div>
+      </article>
+      <article class="sc-card bg-ink">
+        <img src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&w=1000&q=80" alt="Platines et mixeur dans un club sombre">
+        <div class="absolute inset-0 bg-gradient-to-t from-acid/80 via-ink/40 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-7 text-bone">
+          <span class="font-mono text-xs text-ink bg-acid px-2 py-0.5 rounded-full">D — 1 200 pers.</span>
+          <h3 class="font-display font-black uppercase text-4xl md:text-5xl tracking-tighter leading-none mt-3">La Chaufferie</h3>
+          <p class="font-body font-light text-bone/90 mt-3 text-sm">Breaks, jungle, expérimental. La cave des chaudières : 300 m², plafond bas, basses cruelles.</p>
+        </div>
+      </article>
+    </div>
+    <div class="px-5 md:px-10 mt-8 md:mt-10"><div class="h-[3px] bg-white/10 rounded-full overflow-hidden"><div class="bar h-full w-full bg-acid"></div></div></div>
+  </div>
+</div>
+</section>
+
+<!-- ============ PROGRAMME ============ -->
+<section id="programme" class="bg-bone text-ink py-24 md:py-36 px-5 md:px-10">
+<style>
+  .tab-btn { transition: background .5s cubic-bezier(0.16,1,0.3,1), color .5s, transform .5s cubic-bezier(0.16,1,0.3,1); }
+  .tab-btn:hover { transform: translateY(-3px); }
+  .tab-btn[aria-selected="true"] { background:#07060b; color:#c8ff2e; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+  @media (prefers-reduced-motion: no-preference) { .tab-panel.active { animation: panelIn .9s cubic-bezier(0.16,1,0.3,1) both; } }
+  @keyframes panelIn { from { opacity:0; transform: translateY(1.5rem);} to { opacity:1; transform:none; } }
+  .slot { display:grid; grid-template-columns: 5.5rem 1fr auto; gap:1rem; align-items:baseline; padding:1.1rem 0; border-top:1px solid rgba(7,6,11,.2); transition: padding .6s cubic-bezier(0.16,1,0.3,1), background .4s; }
+  .slot:hover { padding-left:1rem; background: linear-gradient(90deg, rgba(200,255,46,.5), transparent); }
+</style>
+<div class="max-w-[1500px] mx-auto">
+  <div class="grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4">
+      <p class="reveal font-mono text-xs uppercase tracking-[0.3em] mb-6 flex items-center gap-3"><span class="w-10 h-px bg-ink"></span>04 — Programme</p>
+      <h2 class="reveal font-display font-black uppercase tracking-[-0.06em] leading-[0.88] text-[clamp(2.6rem,6.5vw,6.5rem)]">Trois nuits, zéro pause.</h2>
+      <p class="reveal mt-6 font-body font-light max-w-xs leading-relaxed">Ouverture des portes à 17 h. Dernier set à 7 h. Entre les deux : tout le reste. Choisissez votre nuit.</p>
+      <div class="reveal mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Choisir un jour">
+        <button class="tab-btn rounded-full border border-ink px-5 py-3 font-mono text-xs uppercase tracking-widest" role="tab" aria-selected="true" data-tab="p1">Ven 17</button>
+        <button class="tab-btn rounded-full border border-ink px-5 py-3 font-mono text-xs uppercase tracking-widest" role="tab" aria-selected="false" data-tab="p2">Sam 18</button>
+        <button class="tab-btn rounded-full border border-ink px-5 py-3 font-mono text-xs uppercase tracking-widest" role="tab" aria-selected="false" data-tab="p3">Dim 19</button>
+      </div>
+    </div>
+    <div class="md:col-span-7 md:col-start-6">
+      <div id="p1" class="tab-panel active" role="tabpanel">
+        <div class="slot"><span class="font-mono text-sm">18:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Ouverture · Maëlys</span><span class="font-mono text-xs uppercase">Le Canal</span></div>
+        <div class="slot"><span class="font-mono text-sm">21:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Floating Points</span><span class="font-mono text-xs uppercase">Cathédrale</span></div>
+        <div class="slot"><span class="font-mono text-sm">00:30</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Nina Kraviz</span><span class="font-mono text-xs uppercase">Hall</span></div>
+        <div class="slot"><span class="font-mono text-sm">03:30</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Pavane b2b Orsay</span><span class="font-mono text-xs uppercase">Chaufferie</span></div>
+        <div class="slot border-b border-ink/20"><span class="font-mono text-sm">06:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Lever de soleil sur le canal</span><span class="font-mono text-xs uppercase">Canal</span></div>
+      </div>
+      <div id="p2" class="tab-panel" role="tabpanel">
+        <div class="slot"><span class="font-mono text-sm">17:30</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Folamour</span><span class="font-mono text-xs uppercase">Le Canal</span></div>
+        <div class="slot"><span class="font-mono text-sm">20:30</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Bicep (live)</span><span class="font-mono text-xs uppercase">Canal</span></div>
+        <div class="slot"><span class="font-mono text-sm">23:30</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Charlotte de Witte</span><span class="font-mono text-xs uppercase">Hall</span></div>
+        <div class="slot"><span class="font-mono text-sm">02:30</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Anetha</span><span class="font-mono text-xs uppercase">Hall</span></div>
+        <div class="slot border-b border-ink/20"><span class="font-mono text-sm">05:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Set ambient · Cathédrale</span><span class="font-mono text-xs uppercase">Cathédrale</span></div>
+      </div>
+      <div id="p3" class="tab-panel" role="tabpanel">
+        <div class="slot"><span class="font-mono text-sm">16:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Jungle Brain</span><span class="font-mono text-xs uppercase">Chaufferie</span></div>
+        <div class="slot"><span class="font-mono text-sm">19:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Yasmine Nour (live)</span><span class="font-mono text-xs uppercase">Cathédrale</span></div>
+        <div class="slot"><span class="font-mono text-sm">22:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Pavane b2b Orsay</span><span class="font-mono text-xs uppercase">Canal</span></div>
+        <div class="slot"><span class="font-mono text-sm">01:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Éclipse Sonore b2b Maëlys</span><span class="font-mono text-xs uppercase">Hall</span></div>
+        <div class="slot border-b border-ink/20"><span class="font-mono text-sm">07:00</span><span class="font-display font-bold text-xl md:text-2xl tracking-tight uppercase">Extinction des turbines</span><span class="font-mono text-xs uppercase">Hall</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var tabs=document.querySelectorAll('.tab-btn');
+      tabs.forEach(function(t){
+        t.addEventListener('click',function(){
+          tabs.forEach(function(x){ x.setAttribute('aria-selected','false'); });
+          t.setAttribute('aria-selected','true');
+          document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+          document.getElementById(t.getAttribute('data-tab')).classList.add('active');
+        });
+      });
+    })();
+  </script>
+</div>
+</section>
+
+<!-- ============ EXPERIENCE BENTO ============ -->
+<section class="relative bg-ink py-24 md:py-36 px-5 md:px-10 overflow-hidden grain">
+<style>
+  .bento { transition: transform .8s cubic-bezier(0.16,1,0.3,1), box-shadow .8s cubic-bezier(0.16,1,0.3,1); }
+  .bento:hover { transform: translateY(-8px) rotate(-.4deg); box-shadow: 0 30px 80px -20px rgba(200,255,46,.35); }
+  .bento img { transition: transform 1.4s cubic-bezier(0.16,1,0.3,1); }
+  .bento:hover img { transform: scale(1.08); }
+  @media (prefers-reduced-motion: no-preference) { .pulse-dot { animation: pulse 2s ease-in-out infinite; } }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity:1;} 50% { transform: scale(1.8); opacity:.4; } }
+</style>
+<div class="max-w-[1500px] mx-auto relative z-10">
+  <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-14">
+    <div>
+      <p class="reveal font-mono text-xs uppercase tracking-[0.3em] text-acid mb-6">05 — L'expérience</p>
+      <h2 class="reveal font-display font-black uppercase tracking-[-0.06em] leading-[0.88] text-[clamp(2.6rem,7vw,7.5rem)] max-w-[14ch]">Plus qu'un <span class="font-serif italic font-normal normal-case text-plasma tracking-tight">plateau</span> de DJ.</h2>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-6 md:grid-rows-[repeat(2,minmax(0,1fr))] gap-4 md:auto-rows-[18rem]">
+    <div class="bento reveal relative md:col-span-3 md:row-span-2 rounded-[2rem] overflow-hidden min-h-[26rem]">
+      <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1200&q=80" alt="Faisceaux lasers traversant la foule d'un festival" class="absolute inset-0 w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent"></div>
+      <div class="absolute bottom-0 p-8"><i class="fa-solid fa-bolt text-acid text-2xl"></i><h3 class="font-display font-black uppercase text-3xl md:text-5xl tracking-tighter leading-none mt-3">Laser Cathedral</h3><p class="font-body font-light text-bone/80 mt-3 max-w-sm">120 lasers pilotés image par image par le collectif Lumen Noir. Le plafond devient une partition.</p></div>
+    </div>
+    <div class="bento reveal md:col-span-3 rounded-[2rem] bg-acid text-ink p-8 flex flex-col justify-between min-h-[16rem]">
+      <i class="fa-solid fa-leaf text-3xl"></i>
+      <div><h3 class="font-display font-black uppercase text-3xl tracking-tighter leading-none">Bilan carbone −42 %</h3><p class="font-body mt-2 max-w-sm">Électricité 100 % renouvelable, gobelets consignés, navettes ferroviaires depuis Lille et Dunkerque.</p></div>
+    </div>
+    <div class="bento reveal md:col-span-2 rounded-[2rem] bg-ultra p-8 flex flex-col justify-between min-h-[16rem]">
+      <i class="fa-solid fa-ear-listen text-3xl"></i>
+      <div><h3 class="font-display font-black uppercase text-2xl tracking-tighter leading-none">Zone silence</h3><p class="font-body font-light mt-2 text-sm">Espace à 85 dB maxi, bouchons offerts, pour souffler sans quitter le festival.</p></div>
+    </div>
+    <div class="bento reveal md:col-span-1 rounded-[2rem] bg-plasma p-6 flex flex-col justify-between min-h-[16rem]">
+      <span class="relative flex w-3 h-3"><span class="pulse-dot absolute inline-flex w-full h-full rounded-full bg-white"></span><span class="relative inline-flex w-3 h-3 rounded-full bg-white"></span></span>
+      <div><span class="font-display font-black text-6xl tracking-tighter leading-none">24h</span><p class="font-mono text-[11px] uppercase mt-2">Food, eau, soins, ouverts</p></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ PASS ============ -->
+<section id="pass" class="relative bg-night py-24 md:py-36 px-5 md:px-10 overflow-hidden">
+<style>
+  .pass { position:relative; transition: transform .8s cubic-bezier(0.16,1,0.3,1), box-shadow .8s cubic-bezier(0.16,1,0.3,1); }
+  .pass:hover { transform: translateY(-12px); }
+  .pass .btn-p { transition: background .5s, color .5s, transform .5s cubic-bezier(0.16,1,0.3,1); }
+  .pass:hover .btn-p { transform: translateX(6px); }
+  .perf { background: radial-gradient(circle at 50% 0, #0e0c16 0 10px, transparent 11px) 0 0/22px 22px repeat-x; height:22px; }
+</style>
+<div class="max-w-[1400px] mx-auto">
+  <div class="text-center mb-16">
+    <p class="reveal font-mono text-xs uppercase tracking-[0.3em] text-acid mb-6">06 — Billetterie</p>
+    <h2 class="reveal font-display font-black uppercase tracking-[-0.06em] leading-[0.88] text-[clamp(2.8rem,9vw,9.5rem)]">Choisis<br><span class="font-serif italic font-normal normal-case text-acid tracking-tight">ta dose</span></h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6 items-stretch">
+    <article class="pass reveal bg-bone text-ink rounded-[2rem] p-8 flex flex-col hover:shadow-[0_40px_90px_-30px_rgba(241,237,228,.4)]">
+      <span class="font-mono text-xs uppercase tracking-widest">1 nuit</span>
+      <h3 class="font-display font-black uppercase text-5xl tracking-tighter mt-4 leading-none">Flash</h3>
+      <p class="font-display font-black text-6xl tracking-tighter mt-8">69<span class="text-2xl align-top">€</span></p>
+      <ul class="mt-8 space-y-3 font-body text-sm flex-1">
+        <li><i class="fa-solid fa-check mr-2"></i>Accès aux 4 scènes, 1 nuit au choix</li>
+        <li><i class="fa-solid fa-check mr-2"></i>Entrée de 17 h à 7 h</li>
+        <li><i class="fa-solid fa-check mr-2"></i>Navette gratuite depuis la gare</li>
+      </ul>
+      <a href="#infos" class="btn-p mt-8 inline-flex justify-between items-center bg-ink text-bone rounded-full px-6 py-4 font-display font-bold uppercase text-sm hover:bg-plasma">Réserver <i class="fa-solid fa-arrow-right"></i></a>
+    </article>
+    <article class="pass reveal relative bg-acid text-ink rounded-[2rem] p-8 flex flex-col md:-mt-8 md:mb-8 hover:shadow-[0_40px_90px_-20px_rgba(200,255,46,.5)]">
+      <span class="absolute -top-4 right-6 bg-ink text-acid font-mono text-xs uppercase rounded-full px-4 py-2 border border-acid">Le plus choisi</span>
+      <span class="font-mono text-xs uppercase tracking-widest">3 nuits</span>
+      <h3 class="font-display font-black uppercase text-5xl tracking-tighter mt-4 leading-none">Total</h3>
+      <p class="font-display font-black text-6xl tracking-tighter mt-8">159<span class="text-2xl align-top">€</span></p>
+      <ul class="mt-8 space-y-3 font-body text-sm flex-1">
+        <li><i class="fa-solid fa-check mr-2"></i>Les 3 nuits, 4 scènes</li>
+        <li><i class="fa-solid fa-check mr-2"></i>Coupe-file à l'entrée</li>
+        <li><i class="fa-solid fa-check mr-2"></i>Gobelet collector HALOGÈNE offert</li>
+        <li><i class="fa-solid fa-check mr-2"></i>Camping inclus (400 places)</li>
+      </ul>
+      <a href="#infos" class="btn-p mt-8 inline-flex justify-between items-center bg-ink text-acid rounded-full px-6 py-4 font-display font-bold uppercase text-sm hover:bg-plasma hover:text-white">Réserver <i class="fa-solid fa-arrow-right"></i></a>
+    </article>
+    <article class="pass reveal bg-ultra rounded-[2rem] p-8 flex flex-col hover:shadow-[0_40px_90px_-30px_rgba(91,59,255,.8)]">
+      <span class="font-mono text-xs uppercase tracking-widest">3 nuits + coulisses</span>
+      <h3 class="font-display font-black uppercase text-5xl tracking-tighter mt-4 leading-none">Néon VIP</h3>
+      <p class="font-display font-black text-6xl tracking-tighter mt-8">349<span class="text-2xl align-top">€</span></p>
+      <ul class="mt-8 space-y-3 font-body text-sm flex-1">
+        <li><i class="fa-solid fa-check mr-2"></i>Mezzanine vue sur la scène du Hall</li>
+        <li><i class="fa-solid fa-check mr-2"></i>Bar privé et espace chill</li>
+        <li><i class="fa-solid fa-check mr-2"></i>Visite de la centrale avec guide</li>
+        <li><i class="fa-solid fa-check mr-2"></i>Vestiaire et recharge illimités</li>
+      </ul>
+      <a href="#infos" class="btn-p mt-8 inline-flex justify-between items-center bg-bone text-ink rounded-full px-6 py-4 font-display font-bold uppercase text-sm hover:bg-acid">Réserver <i class="fa-solid fa-arrow-right"></i></a>
+    </article>
+  </div>
+  <p class="reveal text-center mt-12 font-mono text-xs uppercase tracking-widest text-bone/50">Paiement en 3 fois sans frais · Billet 100 % remboursable jusqu'au 1er juillet</p>
+</div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="bg-bone text-ink py-24 md:py-32 px-5 md:px-10 overflow-hidden">
+<div class="max-w-[1500px] mx-auto">
+  <p class="reveal font-mono text-xs uppercase tracking-[0.3em] mb-12 flex items-center gap-3"><span class="w-10 h-px bg-ink"></span>07 — Ils y étaient</p>
+  <div class="grid md:grid-cols-12 gap-10 md:gap-6">
+    <blockquote class="reveal md:col-span-7">
+      <p class="font-serif text-[clamp(1.9rem,4.6vw,4.6rem)] leading-[1.02] tracking-tight">« À 4 h du matin, la basse a fait vibrer la rouille du plafond. Une poussière d'or tombait dans les lasers. Je n'ai jamais rien vu de plus beau. »</p>
+      <footer class="mt-8 font-mono text-xs uppercase tracking-widest">— Inès, 29 ans, Lille · édition 2025</footer>
+    </blockquote>
+    <div class="md:col-span-4 md:col-start-9 space-y-6">
+      <blockquote class="reveal border-t border-ink pt-5"><p class="font-body text-lg leading-snug">« Le seul festival où l'on entend les nuances d'un set ambient avec 8 000 personnes autour. »</p><footer class="mt-3 font-mono text-xs uppercase tracking-widest text-ink/60">Jonas · producteur</footer></blockquote>
+      <blockquote class="reveal border-t border-ink pt-5"><p class="font-body text-lg leading-snug">« Organisation impeccable, eau gratuite, navettes à l'heure. Ça paraît basique, ça change tout. »</p><footer class="mt-3 font-mono text-xs uppercase tracking-widest text-ink/60">Camille · festivalière</footer></blockquote>
+    </div>
+  </div>
+  <div class="reveal mt-16 flex flex-wrap gap-x-12 gap-y-6 font-display font-black uppercase tracking-tighter">
+    <div><span class="text-6xl md:text-8xl">4,8</span><span class="block font-mono font-normal text-xs tracking-widest mt-1">/5 note moyenne 2025</span></div>
+    <div><span class="text-6xl md:text-8xl">91%</span><span class="block font-mono font-normal text-xs tracking-widest mt-1">reviennent en 2026</span></div>
+    <div><span class="text-6xl md:text-8xl">38</span><span class="block font-mono font-normal text-xs tracking-widest mt-1">nationalités présentes</span></div>
+  </div>
+</div>
+</section>
+
+<!-- ============ INFOS / FAQ ============ -->
+<section id="infos" class="bg-ink py-24 md:py-36 px-5 md:px-10">
+<style>
+  details.faq { border-top:1px solid rgba(241,237,228,.18); }
+  details.faq:last-of-type { border-bottom:1px solid rgba(241,237,228,.18); }
+  details.faq summary { list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.4rem 0; font-family:'Unbounded',sans-serif; font-weight:500; font-size:clamp(1rem,2vw,1.4rem); transition: color .4s, padding .6s cubic-bezier(0.16,1,0.3,1); }
+  details.faq summary::-webkit-details-marker { display:none; }
+  details.faq summary:hover { color:#c8ff2e; padding-left:.75rem; }
+  details.faq summary i { transition: transform .6s cubic-bezier(0.16,1,0.3,1); }
+  details.faq[open] summary i { transform: rotate(135deg); color:#c8ff2e; }
+  details.faq p { padding-bottom:1.5rem; max-width:60ch; color: rgba(241,237,228,.7); font-weight:300; line-height:1.7; }
+  @media (prefers-reduced-motion: no-preference) { details.faq[open] p { animation: faqIn .7s cubic-bezier(0.16,1,0.3,1) both; } }
+  @keyframes faqIn { from { opacity:0; transform: translateY(-.8rem);} to { opacity:1; transform:none; } }
+</style>
+<div class="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-12">
+  <div class="md:col-span-5">
+    <p class="reveal font-mono text-xs uppercase tracking-[0.3em] text-acid mb-6">08 — Infos pratiques</p>
+    <h2 class="reveal font-display font-black uppercase tracking-[-0.06em] leading-[0.88] text-[clamp(2.6rem,6.5vw,6.5rem)]">Avant de venir</h2>
+    <div class="reveal mt-10 space-y-5 font-body">
+      <div class="flex gap-4"><i class="fa-solid fa-location-dot text-acid mt-1 w-5"></i><p>Ancienne centrale thermique<br>Route de la Digue, 59820 Gravelines</p></div>
+      <div class="flex gap-4"><i class="fa-solid fa-train text-acid mt-1 w-5"></i><p>Navettes toutes les 15 min depuis Dunkerque (20 min) et Calais (25 min)</p></div>
+      <div class="flex gap-4"><i class="fa-solid fa-clock text-acid mt-1 w-5"></i><p>Du 17 juillet à 17 h au 19 juillet à 7 h</p></div>
+    </div>
+  </div>
+  <div class="md:col-span-7">
+    <details class="faq reveal" open><summary>Peut-on camper sur place ?<i class="fa-solid fa-plus"></i></summary><p>Oui. Le camping « Les Cheminées » compte 400 places, avec douches chaudes, consigne et espace de repos. Il est inclus dans le pass Total et le pass Néon VIP, et disponible en option (25 €) avec le pass Flash.</p></details>
+    <details class="faq reveal"><summary>Quel âge minimum ?<i class="fa-solid fa-plus"></i></summary><p>Le festival est ouvert dès 16 ans, accompagné d'un adulte jusqu'à 18 ans (autorisation parentale téléchargeable). Une pièce d'identité est demandée à l'entrée.</p></details>
+    <details class="faq reveal"><summary>Y a-t-il des protections auditives ?<i class="fa-solid fa-plus"></i></summary><p>Des bouchons moulés sont offerts à l'entrée et vendus à prix coûtant sur place. Nous plafonnons le son à 102 dB(A) aux abords des scènes et proposons une zone silence.</p></details>
+    <details class="faq reveal"><summary>Le site est-il accessible aux PMR ?<i class="fa-solid fa-plus"></i></summary><p>Oui. Plateformes surélevées devant chaque scène, accès dédié, toilettes adaptées et équipe d'accompagnement. Contactez-nous avant votre venue pour préparer la logistique.</p></details>
+    <details class="faq reveal"><summary>Que faire en cas d'annulation ?<i class="fa-solid fa-plus"></i></summary><p>Votre billet est remboursable jusqu'au 1er juillet 2026, sans justificatif. Il est aussi transférable à une autre personne via notre plateforme officielle, sans frais.</p></details>
+  </div>
+</div>
+</section>
+
+<!-- ============ NEWSLETTER / CTA ============ -->
+<section class="relative bg-plasma text-ink overflow-hidden py-24 md:py-40 px-5 md:px-10 grain">
+<style>
+  .big-link { transition: letter-spacing .8s cubic-bezier(0.16,1,0.3,1); }
+  .nl-input { transition: border-color .4s, box-shadow .4s; }
+  .nl-input:focus { box-shadow: 0 6px 0 -2px #07060b; }
+</style>
+<div class="max-w-[1500px] mx-auto relative z-10">
+  <p class="reveal font-mono text-xs uppercase tracking-[0.3em] mb-8">Dernière chauffe</p>
+  <h2 class="reveal font-display font-black uppercase tracking-[-0.07em] leading-[0.82] text-[clamp(3.2rem,14vw,15rem)]">Rejoins<br>le <span class="font-serif italic font-normal normal-case tracking-tight">signal</span></h2>
+  <form class="reveal mt-14 flex flex-col md:flex-row gap-4 md:items-end max-w-3xl" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='C\'est noté, à très vite <i class=\'fa-solid fa-check ml-2\'></i>';">
+    <label class="flex-1">
+      <span class="font-mono text-xs uppercase tracking-widest">Ton e-mail</span>
+      <input type="email" required placeholder="toi@exemple.fr" class="nl-input mt-2 w-full bg-transparent border-b-2 border-ink py-3 font-display text-xl md:text-2xl placeholder-ink/40 focus:outline-none">
+    </label>
+    <button type="submit" class="bg-ink text-acid rounded-full px-8 py-4 font-display font-bold uppercase text-sm hover:bg-acid hover:text-ink transition-colors duration-500">Recevoir les alertes <i class="fa-solid fa-arrow-right ml-2"></i></button>
+  </form>
+  <p class="reveal mt-5 font-body text-sm max-w-md">Line-up complet en avant-première, ventes privées et un seul e-mail par mois. Pas de spam.</p>
+</div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink text-bone pt-20 md:pt-28 pb-8 px-5 md:px-10 overflow-hidden">
+<style>
+  .f-link { position:relative; display:inline-block; }
+  .f-link::after { content:""; position:absolute; left:0; bottom:-2px; height:1px; width:100%; background:#c8ff2e; transform:scaleX(0); transform-origin:right; transition: transform .6s cubic-bezier(0.16,1,0.3,1); }
+  .f-link:hover { color:#c8ff2e; }
+  .f-link:hover::after { transform:scaleX(1); transform-origin:left; }
+  .soc { transition: transform .5s cubic-bezier(0.16,1,0.3,1), background .4s, color .4s; }
+  .soc:hover { transform: translateY(-5px) rotate(-8deg); background:#c8ff2e; color:#07060b; }
+</style>
+<div class="max-w-[1500px] mx-auto">
+  <div class="grid md:grid-cols-12 gap-10 pb-14 border-b border-white/15">
+    <div class="md:col-span-5">
+      <a href="#top" class="font-display font-black text-4xl tracking-tighter">HALOGÈNE<span class="text-acid">.</span></a>
+      <p class="mt-4 font-serif italic text-2xl text-bone/70 max-w-sm">La lumière qui reste quand le son s'arrête.</p>
+    </div>
+    <nav class="md:col-span-3 flex flex-col gap-3 font-mono text-xs uppercase tracking-widest">
+      <a class="f-link" href="#concept">Le lieu</a><a class="f-link" href="#lineup">Line-up</a><a class="f-link" href="#scenes">Scènes</a><a class="f-link" href="#programme">Programme</a><a class="f-link" href="#pass">Billets</a><a class="f-link" href="#infos">Infos</a>
+    </nav>
+    <div class="md:col-span-4">
+      <p class="font-mono text-xs uppercase tracking-widest text-bone/50 mb-4">Suivre le signal</p>
+      <div class="flex gap-3">
+        <a href="#" aria-label="Instagram" class="soc w-12 h-12 rounded-full border border-white/30 flex items-center justify-center"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok" class="soc w-12 h-12 rounded-full border border-white/30 flex items-center justify-center"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" aria-label="SoundCloud" class="soc w-12 h-12 rounded-full border border-white/30 flex items-center justify-center"><i class="fa-brands fa-soundcloud"></i></a>
+        <a href="#" aria-label="YouTube" class="soc w-12 h-12 rounded-full border border-white/30 flex items-center justify-center"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+      <p class="mt-6 font-body text-sm text-bone/60">contact@halogene-festival.fr<br>Presse : presse@halogene-festival.fr</p>
+    </div>
+  </div>
+  <p class="font-display font-black uppercase tracking-[-0.07em] leading-[0.8] text-[clamp(4rem,23vw,26rem)] text-transparent select-none mt-8" style="-webkit-text-stroke:1px rgba(241,237,228,.22)" aria-hidden="true">HALOGÈNE</p>
+  <div class="mt-6 flex flex-col md:flex-row justify-between gap-3 font-mono text-[11px] uppercase tracking-widest text-bone/50">
+    <span>© 2026 HALOGÈNE Festival — Tous droits réservés</span>
+    <span>Mentions légales · CGV · Charte éco-responsable</span>
+    <span>L'abus d'alcool est dangereux pour la santé</span>
+  </div>
+</div>
+</footer>
+
+</body>
+</html>
